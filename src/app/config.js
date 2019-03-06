@@ -4,7 +4,7 @@ const config = {
     api: 'api/v1',
   },
   production: {
-    server: 'http://afterjskit.com/',
+    server: 'https://e-shop.com/',
     api: 'api/v1',
   },
 };

@@ -2,21 +2,21 @@
 import React from 'react';
 import serialize from 'serialize-javascript';
 import { Provider } from 'react-redux';
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet } from 'styled-components';
 import { AfterRoot, AfterData } from '@jaredpalmer/after';
 
 export default class Document extends React.Component {
   static async getInitialProps({ assets, data, renderPage }) {
-    const sheet = new ServerStyleSheet()
-    const page = await renderPage(App => props => sheet.collectStyles(<App {...props} />))
-    const styleTags = sheet.getStyleElement()
+    const sheet = new ServerStyleSheet();
+    const page = await renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />)
+    );
+    const styleTags = sheet.getStyleElement();
 
-
-
-    return { assets, data, ...page, styleTags};
+    return { assets, data, ...page, styleTags };
   }
 
- render() {
+  render() {
     const { helmet, assets, data, styleTags, serverState } = this.props;
     // get attributes from React Helmet
     const htmlAttrs = helmet.htmlAttributes.toComponent();
@@ -27,7 +27,7 @@ export default class Document extends React.Component {
         <head>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta charSet="utf-8" />
-          <title>Welcome to the Afterparty</title>
+          <title>e-Shop | World's Smallest e-commerce site</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
@@ -37,7 +37,7 @@ export default class Document extends React.Component {
         </head>
         <body {...bodyAttrs}>
           <AfterRoot />
-          <AfterData data={data}/>
+          <AfterData data={data} />
           <script
             type="text/javascript"
             src={assets.client.js}
@@ -48,7 +48,7 @@ export default class Document extends React.Component {
             dangerouslySetInnerHTML={
               { __html: `<script>window.__PRELOADED_STATE__ = ${serialize(serverState)}</script>` } // prettier-ignore
             }
-      />
+          />
         </body>
       </html>
     );

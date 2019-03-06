@@ -1,21 +1,30 @@
 export default {
-  typography: {
-    fonts: {
-      primary: 'sans-serif',
+  palette: {
+    common: { black: '#212529', white: '#fff' },
+    background: { paper: '#fff', default: '#f8f9fa' },
+    primary: {
+      light: '#d0ebff',
+      main: '#74c0fc',
+      dark: '#1971c2',
+      contrastText: '#fff',
     },
-    fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
-  },
-  colors: {
-    blue: '#07c',
-    lightgray: '#f6f6ff',
-  },
-  space: [0, 4, 8, 16, 32, 64, 128, 256],
-  fonts: {
-    sans: 'system-ui, sans-serif',
-    mono: 'Menlo, monospace',
-  },
-  shadows: {
-    small: '0 0 4px rgba(0, 0, 0, .125)',
-    large: '0 0 24px rgba(0, 0, 0, .125)',
+    secondary: {
+      light: '#faa2c1',
+      main: '#d6336c',
+      dark: '#a61e4d',
+      contrastText: '#fff',
+    },
+    error: {
+      light: '#ff8787',
+      main: '#fa5252',
+      dark: '#e03131',
+      contrastText: '#fff',
+    },
+    text: {
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.54)',
+      disabled: 'rgba(0, 0, 0, 0.38)',
+      hint: 'rgba(0, 0, 0, 0.38)',
+    },
   },
 };
