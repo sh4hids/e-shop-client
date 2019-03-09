@@ -7,7 +7,7 @@ const { metaData } = config[env];
 
 const MetaData = props => (
   <Helmet>
-    <title>{`${props.title || metaData.title} || ${metaData.siteName}`}</title>
+    <title>{`${props.title || metaData.title} | ${metaData.siteName}`}</title>
     <meta
       name="description"
       content={props.description || metaData.description}

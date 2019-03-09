@@ -6,19 +6,43 @@ import { ServerStyleSheet } from 'styled-components';
 import { AfterRoot, AfterData } from '@jaredpalmer/after';
 import { MainLayout } from '../app/views/layouts';
 
+import { SheetsRegistry } from 'jss';
+import JssProvider from 'react-jss/lib/JssProvider';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
+import theme from '../app/theme';
+
 export default class Document extends React.Component {
   static async getInitialProps({ assets, data, renderPage }) {
+    const sheetsRegistry = new SheetsRegistry();
+    const sheetsManager = new Map();
+    const generateClassName = createGenerateClassName();
+    const materialTheme = createMuiTheme(theme);
+
     const sheet = new ServerStyleSheet();
     const page = await renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
+      sheet.collectStyles(
+        <JssProvider
+          registry={sheetsRegistry}
+          generateClassName={generateClassName}
+        >
+          <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+            <App {...props} />
+          </MuiThemeProvider>
+        </JssProvider>
+      )
     );
+    const css = sheetsRegistry.toString();
     const styleTags = sheet.getStyleElement();
 
-    return { assets, data, ...page, styleTags };
+    return { assets, data, ...page, styleTags, css };
   }
 
   render() {
-    const { helmet, assets, data, styleTags, serverState } = this.props;
+    const { helmet, assets, data, styleTags, serverState, css } = this.props;
     // get attributes from React Helmet
     const htmlAttrs = helmet.htmlAttributes.toComponent();
     const bodyAttrs = helmet.bodyAttributes.toComponent();
@@ -34,6 +58,7 @@ export default class Document extends React.Component {
           {helmet.meta.toComponent()}
           {helmet.link.toComponent()}
           {/** here is where we put our Styled Components styleTags... */}
+          {css}
           {styleTags}
         </head>
         <body {...bodyAttrs}>
