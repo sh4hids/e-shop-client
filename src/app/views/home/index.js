@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { MetaData } from '../components';
+import HomePage from './home-page';
 
 class HomePageContainer extends Component {
   static async getInitialProps({ store, req }) {
@@ -6,17 +8,7 @@ class HomePageContainer extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>Hello World!</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto
-          quidem, in tempore, neque cupiditate ducimus incidunt at,
-          reprehenderit fuga culpa tenetur ullam suscipit ex ipsa harum optio
-          mollitia eaque aspernatur!
-        </p>
-      </div>
-    );
+    return <HomePage />;
   }
 }
 

@@ -4,6 +4,7 @@ import serialize from 'serialize-javascript';
 import { Provider } from 'react-redux';
 import { ServerStyleSheet } from 'styled-components';
 import { AfterRoot, AfterData } from '@jaredpalmer/after';
+import { MainLayout } from '../app/views/layouts';
 
 export default class Document extends React.Component {
   static async getInitialProps({ assets, data, renderPage }) {
@@ -36,8 +37,10 @@ export default class Document extends React.Component {
           {styleTags}
         </head>
         <body {...bodyAttrs}>
-          <AfterRoot />
-          <AfterData data={data} />
+          <MainLayout>
+            <AfterRoot />
+            <AfterData data={data} />
+          </MainLayout>
           <script
             type="text/javascript"
             src={assets.client.js}

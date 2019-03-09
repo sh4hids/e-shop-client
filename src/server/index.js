@@ -3,7 +3,6 @@ import React from 'react';
 import express from 'express';
 import { render } from '@jaredpalmer/after';
 import { renderToString } from 'react-dom/server';
-import { Home } from '../app/views/pages';
 import { AuthService } from '../app/helpers';
 import routes from '../app/routes';
 import MyDocument from './Document';

@@ -7,6 +7,7 @@ import { ensureReady, After } from '@jaredpalmer/after';
 import theme from '../app/theme';
 import routes from '../app/routes';
 import configureStore from '../app/state/store';
+import { MainLayout } from '../app/views/layouts';
 
 const store = configureStore(window.__PRELOADED_STATE__);
 
